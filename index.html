@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard - Real-time Weather Information</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌤️ Weather Dashboard</h1>
+            <p class="subtitle">Real-time weather information at your fingertips</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search for a city..." 
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button id="searchBtn" class="search-btn" title="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Error Message (appears right under search) -->
+            <div id="errorMessage" class="error-message hidden"></div>
+
+            <!-- Loading Animation -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Loading weather data...</p>
+            </div>
+        </div>
+
+        <!-- Current Weather Section -->
+        <div id="weatherSection" class="weather-section hidden">
+            <div class="current-weather glassmorphism">
+                <div class="weather-header">
+                    <div class="city-info">
+                        <h2 id="cityName" class="city-name">--</h2>
+                        <p id="weatherDate" class="weather-date">--</p>
+                    </div>
+                    <div class="weather-icon-main">
+                        <img id="weatherIcon" src="" alt="Weather" class="icon-main">
+                    </div>
+                </div>
+
+                <div class="temperature-section">
+                    <div class="temp-main">
+                        <span id="temperature" class="temp-value">--</span>
+                        <span class="temp-unit">°C</span>
+                    </div>
+                    <p id="weatherDescription" class="weather-desc">--</p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Humidity</p>
+                            <p id="humidity" class="detail-value">--%</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 0.885L9.5 21M14.5 0.885L14.41 21M4 7.5h16M4 12.5h16M4 17.5h16"></path>
+                            <path d="M4 11c0-1.5 2-3 6-3s4 1.5 4 3"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Wind Speed</p>
+                            <p id="windSpeed" class="detail-value">-- m/s</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Pressure</p>
+                            <p id="pressure" class="detail-value">-- hPa</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Feels Like</p>
+                            <p id="feelsLike" class="detail-value">--°C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div class="forecast-section">
+                <h3 class="forecast-title">5-Day Forecast</h3>
+                <div id="forecastContainer" class="forecast-container">
+                    <!-- Forecast cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Default Message -->
+        <div id="defaultMessage" class="default-message">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+            </svg>
+            <p>Search for a city to see current weather and 5-day forecast</p>
+            <div class="api-key-notice">
+                <p><strong>⚙️ Setup Required:</strong></p>
+                <p>1. Get a FREE API key from <a href="https://openweathermap.org/api" target="_blank" rel="noopener noreferrer">OpenWeatherMap</a></p>
+                <p>2. Open <code>script.js</code> file</p>
+                <p>3. Replace <code>YOUR_API_KEY_HERE</code> with your API key</p>
+                <p>4. Reload this page</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+                    <div class="weather-icon-main">
+                        <img id="weatherIcon" src="" alt="Weather" class="icon-main">
+                    </div>
+                </div>
+
+                <div class="temperature-section">
+                    <div class="temp-main">
+                        <span id="temperature" class="temp-value">--</span>
+                        <span class="temp-unit">°C</span>
+                    </div>
+                    <p id="weatherDescription" class="weather-desc">--</p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Humidity</p>
+                            <p id="humidity" class="detail-value">--%</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 0.885L9.5 21M14.5 0.885L14.41 21M4 7.5h16M4 12.5h16M4 17.5h16"></path>
+                            <path d="M4 11c0-1.5 2-3 6-3s4 1.5 4 3"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Wind Speed</p>
+                            <p id="windSpeed" class="detail-value">-- m/s</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Pressure</p>
+                            <p id="pressure" class="detail-value">-- hPa</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Feels Like</p>
+                            <p id="feelsLike" class="detail-value">--°C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div class="forecast-section">
+                <h3 class="forecast-title">5-Day Forecast</h3>
+                <div id="forecastContainer" class="forecast-container">
+                    <!-- Forecast cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Default Message -->
+        <div id="defaultMessage" class="default-message">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+            </svg>
+            <p>Enter a city name to get started</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
